@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+table {
+  border-collapse: collapse;
+  width: 70%;
+  margin:10px auto;
+  border: 2px solid #ccc;
+}
+
+input[type="submit"],
+input[type="text"],
+select,
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+label {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 36px;
+}
+
+input[type="date"] {
+  position: relative;
+  padding: 0 10px;
+  width: 200px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #999;
+}
+
+#alert{
+  text-align: center;
+  width: 70%;
+  margin: 55px auto;
+  font-size:36px;
+  color:red;
+}
+
+.search-table {
+    width: 70%;
+  }
+  
+  .search-table th,
+  .search-table td {
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 20px;
+  }
+  
+  .search-table th {
+    background: #ffecea;
+    position: relative;
+    text-align: left;
+    width: 150px;
+  }
+  
+  .search-table td {
+    background: #fff;
+    position: relative;
+    text-align: left;
+    width: 150px;
+  }
+
+  .button{
+    display:inline-block;
+    background:#d13415;
+    padding:10px 30px;
+    text-align:center;
+    color:#FFF;
+    margin:5px;
+    border:1px solid;
+    cursor:pointer;
+    }
+
+/* スマホだけに適用するCSS */
+@media screen and (max-width:768px)
+{
+    /* ボディ */
+    body
+    {
+        font-size: 13px ;    /* 文字サイズ */
+        margin: 0 ;        /* スペース */
+        padding: 0 ;        /* 余白 */
+    }
+    
+    /* ロゴ画像 */
+    .logo
+    {
+        width: 200px ;
+    }
+    
+    .wrapper
+    {
+        width: 100%;
+        min-height: calc(100vh - 100px);
+        margin-top:50px;
+    }
+
+    .search-table{
+            width: 100%;
+
+    }
+
+    /* フッター */
+    .footer
+    {
+    	margin-top:350px;
+	bottom:0px;
+    }
+
+    .search-table {
+	  width: 100%;
+     }
+	.search-table th,
+	.search-table td {
+	  display: block;
+	  width: 100%;
+	  border-bottom: none;
+	}
+
+	input[type="text"],
+	textarea {
+	  display: block;
+	  width: 90%;
+	}
+
+  .button{
+	  display: block;
+	  width: 90%;
+  }
+
+}
+  
