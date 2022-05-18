@@ -1,11 +1,11 @@
 <?php
 class connect
 {
-    const DB_NAME = "ikefuku40_dailycheck";
-    //const DB_NAME = "dailycheck";
+    // const DB_NAME = "ikefuku40_dailycheck";
+    const DB_NAME = "dailycheck";
     const HOST = "localhost";
-    const USER = "ikefuku40_mtake";
-    //const USER = "mtake";
+    // const USER = "ikefuku40_mtake";
+    const USER = "mtake";
     const PASS = "Manabu2010";
 
     protected $dbh;

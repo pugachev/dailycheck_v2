@@ -7,9 +7,31 @@ class Daily
     private $tgtitem = null;
     private $tgtmoney = null;
     private $tgtcalory = null;
+    private $tgttimezone = null;
+    private $tgtpicname = null;
 
     private $totalmoney=0;
     private $toalcalory=0;
+
+    public function getTimezone()
+    {
+        return $this->tgttimezone;
+    }
+
+    public function getPictheme()
+    {
+        return $this->tgtpicname;
+    }
+
+    public function setTimezone($tgttimezone)
+    {
+        $this->tgttimezone=$tgttimezone;
+    }
+
+    public function setPictheme($tgtpicname)
+    {
+        $this->tgtpicname=$tgtpicname;
+    }
 
     public function getTotalMoney()
     {

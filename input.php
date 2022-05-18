@@ -20,8 +20,11 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/SMTP.php';
 
-if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GET['tgtitem']))) {
 
+
+if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GET['tgtitem']))) {
+  // print_r($_POST);
+  // die();
   // インスタンスを生成（true指定で例外を有効化）
   $mail = new PHPMailer(true);
 
@@ -39,6 +42,48 @@ if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GE
   $tgtitem = $_POST['tgtitem'];
   $tgtmoney = $_POST['tgtmoney'];
   $tgtcalory = $_POST['tgtcalory'];
+  $tgttimezone = $_POST['tgttimezone'];
+  // $tgtpicname = "";
+
+  //ファイルを取得
+      if(!empty($_POST['tgttimezone'])){
+          $dtime = $_POST['tgttimezone'];
+          switch($dtime){
+            case 1:
+              $timezone="morning";
+              break;
+            case 2:
+              $timezone="daytime";
+              break;
+            case 3:
+              $timezone="dinner";
+              break;
+            default:
+            $timezone="no data";
+            break;
+          }
+      }
+
+      $now = date('Y-m-d');
+
+      $tgtfilename = $now.'_'.$timezone;
+      $tgtfilename .= '.' . substr(strrchr($_FILES['tgtpicname']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
+      $file = "upload/$tgtfilename";
+      // $sql = "INSERT INTO input(picname) VALUES (:image)";
+      // $stmt = $dbh->prepare($sql);
+      // $stmt->bindValue(':image', $image, PDO::PARAM_STR);
+  //$_FILES['image']['name'] 元ファイル名
+      if (!empty($_FILES['tgtpicname']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
+    //$_FILES['image']['tmp_name'] /tm/xxxx てな感じのファイル名 現在ファイル本体がある仮のパスがあるっぽい
+          move_uploaded_file($_FILES['tgtpicname']['tmp_name'], 'upload/' . $tgtfilename);//imagesディレクトリにファイル保存
+          if (exif_imagetype($file)) {//画像ファイルかのチェック
+              // $message = '画像をアップロードしました';
+              // $stmt->execute();
+          } else {
+              // $message = '画像ファイルではありません';
+          }
+      }
+
 
 
     //既存の値を取得して画面にだす
@@ -104,7 +149,10 @@ if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GE
   $daily->setItem($tgtitem);
   $daily->setMoney($tgtmoney);
   $daily->setCalory($tgtcalory);
-
+  $daily->setTimezone($tgttimezone);
+  $daily->setPictheme($tgtfilename);
+  // print_r($tgtfilename);
+  // die();
   $daily->save();
 
   header('Location: index.php');
@@ -131,7 +179,7 @@ if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GE
 
 
 	<!-- メイン開始 -->
-  <form action="input.php" method="post">
+  <form enctype="multipart/form-data" action="input.php" method="post">
     <table class="form-table">
       <tbody>
         <tr>
@@ -159,6 +207,25 @@ if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GE
           </td>
         </tr>
         <tr>
+          <th>時間帯</th>
+          <td>
+              <ul class="selectradio selectradio-inline">
+                <li class="selectradio-item">
+                  <input type="radio" name="tgttimezone" id="select2-1" value="1" checked="">
+                  <label for="select2-1" class="selectradio-label">朝</label>
+                </li>
+                <li class="selectradio-item">
+                  <input type="radio" name="tgttimezone" id="select2-2" value="2">
+                  <label for="select2-2" class="selectradio-label">昼</label>
+                </li>
+                <li class="selectradio-item">
+                  <input type="radio" name="tgttimezone" id="select2-3" value="3">
+                  <label for="select2-3" class="selectradio-label">夜</label>
+                </li>
+              </ul>
+          </td>
+        </tr>
+        <tr>
           <th>品目</th>
           <td><input type="text" name="tgtitem" size="60" value="">
           </td>
@@ -171,6 +238,11 @@ if ((!empty($_POST['tgtdate']) || !empty($_POST['tgtcategory'])) || (!empty($_GE
         <tr>
           <th>熱量</th>
           <td><input type="text" name="tgtcalory" size="60" value="">
+          </td>
+        </tr>
+        <tr>
+          <th>画像ファイル</th>
+          <td><input type="file" name="tgtpicname" size="60" >
           </td>
         </tr>
       </tbody>

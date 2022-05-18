@@ -185,11 +185,11 @@ class QueryDaily extends connect
     {
         $picdata = "";
         if(empty($results)){
-            $picdata=array("tgtpicname"=>'upload/nodata.png');
+            $picdata=array("tgtpicname"=>'http://localhost/dailycheck_v2/nodata.png');
         }else{
             foreach ($results as $result) 
             {
-                $picdata=array("tgtpicname"=>'upload/'.$result["tgtpicname"]);
+                $picdata=array("tgtpicname"=>'http://localhost/dailycheck_v2/'.$result["tgtpicname"]);
             }
         }
 

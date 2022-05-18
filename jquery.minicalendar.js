@@ -49,8 +49,8 @@
     console.log(this.prevyyyyMM);
     console.log(this.nextyyyyMM);
 
-    this.prevURL = "https://ikefukuro40.tech/dailycheck/index.php?tgtyyyymm="+this.prevyyyyMM;
-    this.nextURL = "https://ikefukuro40.tech/dailycheck/index.php?tgtyyyymm="+this.nextyyyyMM;
+    this.prevURL = "http://localhost/dailycheck_v2/index.php?tgtyyyymm="+this.prevyyyyMM;
+    this.nextURL = "http://localhost/dailycheck_v2/index.php?tgtyyyymm="+this.nextyyyyMM;
     // jsonファイルから読み込む
     this.loadData();
 
@@ -79,7 +79,7 @@
       // console.log(prevyyyyMM);
       // this.ele.append('<div class="calendar-head"><p class="prev">   前月へ   </p><p class="calendar-year-month"></p><p class="next">   翌月へ   </p></div>');
       this.ele.append('<div class="calendar-head"><a href="'+this.prevURL+'" class=prev ">   前月へ   </a><p class="calendar-year-month"></p><a href="'+this.nextURL+'" class=prev ">   翌月へ   </a>');
-      // this.ele.append('<div class="calendar-head"><a href="https://ikefukuro40.tech/dailycheck/calendar.php?tgtyyyymm=2022/04">   前月へ   </a><p class="calendar-year-month"></p><a class=prev href="https://ikefukuro40.tech/dailycheck/calendar.php?tgtyyyymm="'+nextyyyyMM+'">   翌月へ   </a>');
+      // this.ele.append('<div class="calendar-head"><a href="http://localhost/dailycheck_v2/calendar.php?tgtyyyymm=2022/04">   前月へ   </a><p class="calendar-year-month"></p><a class=prev href="http://localhost/dailycheck_v2/calendar.php?tgtyyyymm="'+nextyyyyMM+'">   翌月へ   </a>');
       var outText = '<table><thead><tr>';
       for (var i = 0; i < this.opts.weekType.length; i++) {
         if (i === 0) {
@@ -190,7 +190,7 @@
       var tgtyearmonth=self.year+'/'+self.month;
       $.ajax({
         type: "GET",
-        url: "https://ikefukuro40.tech/dailycheck/calendar.php?tgtyyyymm="+tgtyearmonth,
+        url: "http://localhost/dailycheck_v2/calendar.php?tgtyyyymm="+tgtyearmonth,
         dataType: "json",
         async: false,
         cache: false,

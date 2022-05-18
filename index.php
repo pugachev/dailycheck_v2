@@ -4,7 +4,11 @@
   header('Cache-Control:no-cache,no-store,must-revalidate,max-age=0');
   header('Cache-Control:pre-check=0,post-check=0',false);
   header('Pragma:no-cache');
+//特定のドメインからのリクエストを許可
+header("Access-Control-Allow-Origin: http://localhost/dailycheck_v2");
 
+//すべてのドメインからのリクエストを許可
+header("Access-Control-Allow-Origin: *");
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="sanitize.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel=”shortcut icon” href=”https://ikefukuro40.tech/favicon.ico” />
+    <link rel=”shortcut icon” href=”htttp://localhost/favicon.ico” />
     <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
       rel="stylesheet"
