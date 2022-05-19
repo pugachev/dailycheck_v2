@@ -73,7 +73,7 @@
     <main>
 	        <table>
             <div class="headinfo">
-             <?php  print '<div class="tgthead"><a href="daily.php?tgtdate=' . $tgtyearmonthdate . '">'.$tgtyearmonthdate.'</a></div>'; ?>
+             <?php  print '<div class="tgthead"><a style="text-decoration: none;" href="daily.php?tgtdate=' . $tgtyearmonthdate . '">'.$tgtyearmonthdate.'</a></div>'; ?>
             </div>
             <div class="headinfo">
               <div class="tgthead2">出費計:<?php echo $head_reqults['totalmoeny']; ?>円(差分:<?php echo $head_reqults['diffmoney']; ?> 円)</div>
